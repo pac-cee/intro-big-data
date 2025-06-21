@@ -1,0 +1,30 @@
+name: bigdata-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - jupyter
+  - jupyterlab
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - pyspark
+  - pymongo
+  - sqlalchemy
+  - pyarrow
+  - fastparquet
+  - dask
+  - vaex
+  - jupyter_contrib_nbextensions
+  - black
+  - flake8
+  - pip
+  - pip:
+    - findspark
+    - kaggle
+    - pyodbc
+    - pymysql
+    - psycopg2-binary
