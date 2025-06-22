@@ -6,27 +6,105 @@
 3. [Seaborn for Statistical Visualization](#seaborn-for-statistical-visualization)
 4. [Plotly for Interactive Visualizations](#plotly-for-interactive-visualizations)
 5. [Dashboarding with Dash](#dashboarding-with-dash)
-6. [Big Data Visualization Techniques](#big-data-visualization-techniques)
-7. [Best Practices](#best-practices)
-8. [Practice Exercises](#practice-exercises)
+6. [Geographic Data Visualization](#geographic-data-visualization)
+7. [Time Series Visualization](#time-series-visualization)
+8. [Network Visualization](#network-visualization)
+9. [Big Data Visualization Techniques](#big-data-visualization-techniques)
+10. [Best Practices](#best-practices)
+11. [Practice Exercises](#practice-exercises)
+12. [Further Reading](#further-reading)
 
 ## Introduction to Data Visualization
 
-Data visualization is the graphical representation of data to help people understand patterns, trends, and insights.
+Data visualization is the graphical representation of data to help people understand patterns, trends, and insights. It transforms complex data into visual formats that are easier to interpret and analyze.
 
 ### Why Visualize Data?
-- Identify patterns and trends
-- Communicate findings effectively
-- Detect outliers and anomalies
-- Support decision-making
-- Tell compelling data stories
+- **Identify patterns and trends**: Spot correlations and trends that aren't obvious in raw data
+- **Communicate findings effectively**: Convey complex information clearly and efficiently
+- **Detect outliers and anomalies**: Quickly identify data points that deviate from the norm
+- **Support decision-making**: Enable data-driven decisions through clear visual evidence
+- **Tell compelling data stories**: Create narratives that engage and inform your audience
+- **Explore data**: Interactively investigate data to form hypotheses
+- **Monitor changes over time**: Track metrics and KPIs effectively
 
 ### Types of Visualizations
-1. **Comparison**: Bar charts, line charts, radar charts
-2. **Distribution**: Histograms, box plots, violin plots
-3. **Composition**: Pie charts, stacked bars, treemaps
-4. **Relationship**: Scatter plots, bubble charts, heatmaps
-5. **Geospatial**: Choropleth maps, point maps, flow maps
+
+#### 1. Comparison
+- **Bar charts**: Compare values across categories
+- **Line charts**: Show trends over time
+- **Radar charts**: Compare multiple quantitative variables
+- **Bullet graphs**: Display performance against targets
+
+#### 2. Distribution
+- **Histograms**: Show frequency distribution of numerical data
+- **Box plots**: Visualize statistical measures and outliers
+- **Violin plots**: Combine box plots with kernel density estimation
+- **ECDF plots**: Show cumulative distribution of data
+
+#### 3. Composition
+- **Pie/Donut charts**: Show parts of a whole (use sparingly)
+- **Stacked bars**: Compare composition across categories
+- **Treemaps**: Display hierarchical data as nested rectangles
+- **Sankey diagrams**: Show flows and their quantities
+
+#### 4. Relationship
+- **Scatter plots**: Show relationship between two variables
+- **Bubble charts**: Add size as a third dimension
+- **Heatmaps**: Visualize matrix-like data with colors
+- **Correlograms**: Show correlation between multiple variables
+
+#### 5. Geospatial
+- **Choropleth maps**: Color regions based on data values
+- **Point maps**: Show specific locations on a map
+- **Flow maps**: Display movement between locations
+- **Cartograms**: Distort regions based on data values
+
+### The Data Visualization Pipeline
+1. **Data Collection**: Gather raw data from various sources
+2. **Data Cleaning**: Handle missing values and outliers
+3. **Data Transformation**: Aggregate, filter, or derive new features
+4. **Visual Encoding**: Map data to visual properties (position, size, color, etc.)
+5. **Rendering**: Generate the visual representation
+6. **Interaction**: Add interactive elements for exploration
+7. **Annotation**: Add context and explanations
+8. **Publication**: Share the visualization with the intended audience
+
+### Choosing the Right Visualization
+
+| Question to Answer | Recommended Visualization |
+|-------------------|--------------------------|
+| Compare values between categories | Bar chart, Column chart |
+| Show trends over time | Line chart, Area chart |
+| Show distribution of data | Histogram, Box plot, Violin plot |
+| Show relationship between variables | Scatter plot, Bubble chart |
+| Show parts of a whole | Pie chart (few categories), Treemap |
+| Show geographic patterns | Choropleth map, Point map |
+| Show correlation between variables | Heatmap, Scatter plot matrix |
+| Show hierarchical data | Treemap, Sunburst chart |
+| Show network relationships | Node-link diagram, Matrix plot |
+
+### Tools and Libraries
+- **Matplotlib**: Foundational plotting library
+- **Seaborn**: Statistical data visualization
+- **Plotly**: Interactive visualizations
+- **Bokeh**: Interactive web visualizations
+- **Altair**: Declarative statistical visualization
+- **D3.js**: Web-based data visualization
+- **Tableau**: Business intelligence and analytics
+- **Power BI**: Business analytics service
+
+### The Grammar of Graphics
+Understanding the grammar of graphics helps in creating effective visualizations:
+
+1. **Data**: The dataset being visualized
+2. **Aesthetics**: Visual properties (x, y, color, size, shape, etc.)
+3. **Geometries**: The type of visual mark (point, line, bar, etc.)
+4. **Scales**: How data maps to aesthetics
+5. **Coordinates**: The coordinate system (Cartesian, polar, etc.)
+6. **Facets**: Small multiples for comparing subsets
+7. **Themes**: Non-data ink and styling
+
+This conceptual framework, popularized by Leland Wilkinson and implemented in libraries like ggplot2, provides a consistent way to think about and create visualizations.
 
 ## Matplotlib Fundamentals
 
