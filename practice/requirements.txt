@@ -1,0 +1,10 @@
+# Requirements for Intro to Big Data in Python
+matplotlib
+pandas
+numpy
+scipy
+scikit-learn
+seaborn
+plotly
+jupyter
+notebook
