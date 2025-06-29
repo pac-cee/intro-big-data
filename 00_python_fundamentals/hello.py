@@ -90,3 +90,55 @@ def get_min(lst):
 def sum_list(lst):
     """Return the sum of all elements in a list."""
     return sum(lst)
+    class BankAccount:
+        """A simple bank account class."""
+        def __init__(self, owner, balance=0):
+            self.owner = owner
+            self.balance = balance
+
+        def deposit(self, amount):
+            if amount > 0:
+                self.balance += amount
+                return True
+            return False
+
+        def withdraw(self, amount):
+            if 0 < amount <= self.balance:
+                self.balance -= amount
+                return True
+            return False
+
+        def __str__(self):
+            return f"BankAccount(owner={self.owner}, balance={self.balance})"
+
+
+    class Student:
+        """A class representing a student."""
+        def __init__(self, name, grades=None):
+            self.name = name
+            self.grades = grades if grades is not None else []
+
+        def add_grade(self, grade):
+            self.grades.append(grade)
+
+        def average_grade(self):
+            return sum(self.grades) / len(self.grades) if self.grades else 0
+
+        def __str__(self):
+            return f"Student(name={self.name}, average_grade={self.average_grade():.2f})"
+
+
+    class Rectangle:
+        """A class representing a rectangle."""
+        def __init__(self, width, height):
+            self.width = width
+            self.height = height
+
+        def area(self):
+            return self.width * self.height
+
+        def perimeter(self):
+            return 2 * (self.width + self.height)
+
+        def __str__(self):
+            return f"Rectangle(width={self.width}, height={self.height})"
