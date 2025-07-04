@@ -198,6 +198,150 @@ def function_name(parameter1, parameter2=default_value):
 
 ### String Fundamentals
 
+**Real-world Applications:**
+- Data cleaning and preprocessing
+- Log file analysis
+- Web scraping and parsing
+- Natural Language Processing (NLP) tasks
+- Form validation
+- Report generation
+
+### Common String Operations with Real-world Examples
+
+1. **Basic String Operations**
+```python
+# User input sanitization
+def sanitize_username(username):
+    """Remove special characters and convert to lowercase."""
+    import re
+    return re.sub(r'[^a-zA-Z0-9]', '', username).lower()
+
+# File path manipulation
+file_path = "/user/documents/reports/2023/summary.pdf"
+filename = file_path.split('/')[-1]  # 'summary.pdf'
+extension = filename.split('.')[-1]  # 'pdf'
+```
+
+2. **String Formatting**
+```python
+# Dynamic email templates
+def send_welcome_email(user):
+    subject = f"Welcome to Our Service, {user['name']}!"
+    body = """
+    Dear {name},
+    
+    Thank you for joining on {join_date:%B %d, %Y}.
+    Your username is: {username}
+    
+    Best regards,
+    The Team
+    """.format(
+        name=user['name'],
+        join_date=user['join_date'],
+        username=user['username']
+    )
+    return subject, body
+```
+
+3. **Advanced Text Processing**
+```python
+# Log file analysis
+def parse_log_line(line):
+    """Parse a log line into its components."""
+    # Example: "2023-04-01 12:34:56 [ERROR] Failed to connect to database"
+    import datetime
+    from collections import namedtuple
+    
+    LogEntry = namedtuple('LogEntry', ['timestamp', 'level', 'message'])
+    
+    try:
+        timestamp_str = line[:19]
+        timestamp = datetime.datetime.strptime(timestamp_str, '%Y-%m-%d %H:%M:%S')
+        level_end = line.find(']', 20)
+        level = line[21:level_end]
+        message = line[level_end + 2:].strip()
+        return LogEntry(timestamp, level, message)
+    except Exception as e:
+        return None
+```
+
+4. **Regular Expressions**
+```python
+# Data extraction from text
+def extract_emails(text):
+    """Extract all email addresses from a string."""
+    import re
+    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    return re.findall(pattern, text)
+
+# URL validation
+def is_valid_url(url):
+    """Check if a string is a valid URL."""
+    import re
+    pattern = re.compile(
+        r'^https?://'  # http:// or https://
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|'  # domain
+        r'localhost|'  # localhost
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # or ip
+        r'(?::\d+)?'  # optional port
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+    return bool(pattern.match(url))
+```
+
+5. **Text Cleaning and Normalization**
+```python
+def clean_text(text):
+    """Clean and normalize text for NLP processing."""
+    import re
+    import string
+    
+    # Convert to lowercase
+    text = text.lower()
+    
+    # Remove numbers
+    text = re.sub(r'\d+', '', text)
+    
+    # Remove punctuation
+    text = text.translate(str.maketrans('', '', string.punctuation))
+    
+    # Remove extra whitespace
+    text = ' '.join(text.split())
+    
+    # Remove stopwords (example with common English stopwords)
+    stopwords = {'the', 'and', 'to', 'of', 'in', 'for', 'is', 'on', 'that', 'by', 'this', 'with', 'you', 'it', 'as', 'from'}
+    text = ' '.join(word for word in text.split() if word not in stopwords)
+    
+    return text
+```
+
+6. **Working with CSV/TSV Data**
+```python
+def process_csv_file(file_path):
+    """Process a CSV file and extract specific information."""
+    import csv
+    
+    results = []
+    with open(file_path, 'r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            # Process each row (example: filter and transform data)
+            if float(row['price']) > 100:  # Example condition
+                results.append({
+                    'id': row['id'],
+                    'name': row['name'].title(),  # Capitalize first letters
+                    'price': f"${float(row['price']):.2f}",
+                    'category': row['category'].lower()
+                })
+    return results
+```
+
+### String Performance Considerations
+- Use `join()` instead of `+` for concatenating multiple strings in a loop
+- Use f-strings (Python 3.6+) for better readability and performance
+- For large text processing, consider using generators and streaming
+- Be cautious with regex complexity for very large texts
+- Use built-in string methods when possible as they're optimized
+
 1. **String Creation**
    ```python
    single = 'single quotes'
@@ -353,6 +497,127 @@ print(result)  # 'hello-world'
    ```
 
 ## Data Structures
+
+### Lists
+**Real-world Applications:**
+- Storing and processing sequences of data (e.g., sensor readings, time series data)
+- Maintaining ordered collections that need frequent modifications
+- Implementing stacks (LIFO) and queues (FIFO) using `append()`/`pop()`
+
+**When to use:**
+- When you need an ordered, mutable collection
+- When you need to store duplicates
+- When you need index-based access to elements
+- When you need to modify the collection (add/remove items)
+
+**Example Scenario:**
+```python
+# E-commerce shopping cart
+shopping_cart = [
+    {'product': 'Laptop', 'price': 999.99, 'quantity': 1},
+    {'product': 'Mouse', 'price': 24.99, 'quantity': 2}
+]
+
+def add_to_cart(product, price, quantity=1):
+    shopping_cart.append({'product': product, 'price': price, 'quantity': quantity})
+
+def calculate_total():
+    return sum(item['price'] * item['quantity'] for item in shopping_cart)
+```
+
+### Tuples
+**Real-world Applications:**
+- Storing related data that shouldn't change (e.g., coordinates, RGB colors)
+- Dictionary keys (since they're hashable)
+- Function return values for multiple values
+
+**When to use:**
+- When you need an immutable sequence
+- When you need to ensure data integrity
+- When working with dictionary keys
+- For better performance with large collections that won't change
+
+**Example Scenario:**
+```python
+# Geographic coordinates (latitude, longitude, elevation)
+location = (40.7128, -74.0060, 10)  # New York City with elevation
+
+def get_weather(coordinates):
+    lat, lon, _ = coordinates  # Unpacking tuple
+    # API call to get weather data
+    return {'temperature': 22, 'conditions': 'Sunny'}
+```
+
+### Dictionaries
+**Real-world Applications:**
+- JSON data handling
+- Caching/memoization
+- Counting occurrences of items
+- Fast lookups by key
+
+**When to use:**
+- When you need key-value pairs
+- For fast lookups (O(1) average case)
+- When you need to count or group items
+- When working with JSON data
+
+**Example Scenario:**
+```python
+# User authentication system
+users = {
+    'alice': {'password': 'hashed_pass123', 'role': 'admin'},
+    'bob': {'password': 'hashed_pass456', 'role': 'user'}
+}
+
+def authenticate(username, password):
+    user = users.get(username)
+    if user and user['password'] == hash_password(password):
+        return {'status': 'success', 'role': user['role']}
+    return {'status': 'failure', 'message': 'Invalid credentials'}
+```
+
+### Sets
+**Real-world Applications:**
+- Removing duplicates from a list
+- Membership testing
+- Mathematical operations (union, intersection, difference)
+- Finding unique elements in a dataset
+
+**When to use:**
+- When you need to store unique elements
+- For fast membership testing
+- When you need set operations
+- When order doesn't matter
+
+**Example Scenario:**
+```python
+# Social media followers analysis
+followers_alice = {'bob', 'charlie', 'dave'}
+followers_bob = {'charlie', 'dave', 'eve'}
+
+# Find mutual followers
+mutual_followers = followers_alice & followers_bob  # {'charlie', 'dave'}
+
+# Find users who follow only one of them
+exclusive_followers = followers_alice ^ followers_bob  # {'bob', 'eve'}
+```
+
+### Choosing the Right Data Structure
+1. **Need key-value pairs?**
+   - Yes → Dictionary
+   - No → Continue
+
+2. **Need to maintain order?**
+   - Yes → List or Tuple (if immutable)
+   - No → Continue
+
+3. **Need to store unique elements?**
+   - Yes → Set
+   - No → Continue
+
+4. **Need to modify the collection?**
+   - Yes → List or Dictionary
+   - No → Tuple (immutable)
 
 ### 1. Lists
 
