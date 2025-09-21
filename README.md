@@ -35,7 +35,7 @@ intro-big-data/
 
 ## Learning Path
 
-1. Start with Python fundamentals
+1. Start with Python fundamentals : done 
 2. Move to data processing with Pandas and NumPy
 3. Learn about the Big Data ecosystem
 4. Work on real-world projects
